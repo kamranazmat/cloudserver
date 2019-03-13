@@ -53,7 +53,7 @@ function populateDB(s3Client, cb) {
                     CreateBucketConfiguration: { LocationConstraint:
                     `us-east-1:${ingestion}` } }, done),
             putBucketVersioning: done => {
-                if (!versioning) {
+                if (!versioning || ingestion) {
                     return done();
                 }
                 return s3Client.putBucketVersioning({
